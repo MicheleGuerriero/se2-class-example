@@ -1,4 +1,3 @@
-<%@ page import="org.apache.commons.lang3.StringUtils"%>
 <!DOCTYPE html>
 <%!private static Integer k;%>
 <%
@@ -6,7 +5,7 @@
 
 	String second = request.getParameter("t2");
 
-	if (StringUtils.isNumeric(first) && StringUtils.isNumeric(second)) {
+	if (Integer.valueOf(first) != null || Integer.valueOf(second) != null) {
 		int i = Integer.parseInt(first);
 		int j = Integer.parseInt(second);
 		k = i + j;
