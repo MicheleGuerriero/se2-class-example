@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+
 import it.polimi.classexample.beans.AdditionBean;
 import it.polimi.classexample.entities.IntPair;
 
@@ -33,7 +35,7 @@ public class AddServlet extends HttpServlet {
 		String first = request.getParameter("t1");
 		String second = request.getParameter("t2");
 
-		if (Integer.valueOf(first) == null || Integer.valueOf(second) == null) {
+		if (first == "" || second == "" || !StringUtils.isNumeric(first) || !StringUtils.isNumeric(second)) {
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		} else {
 			addBean.setI(Integer.parseInt(first));

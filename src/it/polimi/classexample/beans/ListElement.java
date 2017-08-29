@@ -11,6 +11,7 @@ public class ListElement{
 	List<Integer> values = new ArrayList<Integer>();
 
 	public void addElement(int i) {
+	    System.out.println("Sto aggiungendo " + i);
 		values.add(i);
 	}
 

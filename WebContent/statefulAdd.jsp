@@ -1,4 +1,5 @@
 <%@ page import="it.polimi.classexample.beans.ListElement"%>
+<%@ page import="org.apache.commons.lang.StringUtils"%>
 <%@ page import="javax.naming.InitialContext"%>
 <%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -11,7 +12,7 @@
 	public void jspInit() {
 		try {
 			InitialContext ic = new InitialContext();
-			values = (ListElement) ic.lookup("java:global/class-example/ListElement");
+			values = (ListElement) ic.lookup("java:global/se2-class-example/ListElement");
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -19,12 +20,18 @@
 	}
 	%>
 <%
-	if (request.getParameter("addNum") != null) {
-		values.addElement(Integer.parseInt(request.getParameter("t1")));
-	}
+	String number = request.getParameter("t1");
+	String add = request.getParameter("addNum");
+	String rem = request.getParameter("remNum");
 
-	if (request.getParameter("remNum") != null) {
-		values.removeElement(Integer.parseInt(request.getParameter("t1")));
+	if (number != "" && StringUtils.isNumeric(number)) {
+	    int intNumber = Integer.parseInt(number);
+	    if(add != null){
+			values.addElement(intNumber);
+	    } else if (rem != null){
+            values.removeElement(intNumber);
+	    }
+
 	}
 %>
 

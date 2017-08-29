@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
+
 public class AddServletBasic extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +27,7 @@ public class AddServletBasic extends HttpServlet {
 		String first = request.getParameter("t1");
 		String second = request.getParameter("t2");
 
-		if (Integer.valueOf(first) == null || Integer.valueOf(second) == null) {
+		if (first == "" || second == "" || !StringUtils.isNumeric(first) || !StringUtils.isNumeric(second)) {
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		} else {
 
