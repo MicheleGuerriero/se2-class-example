@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<%!private static Integer k;%>
-<%
-	String first = request.getParameter("t1");
-
-	String second = request.getParameter("t2");
-
-	if (Integer.valueOf(first) != null || Integer.valueOf(second) != null) {
-		int i = Integer.parseInt(first);
-		int j = Integer.parseInt(second);
-		k = i + j;
-	}
-%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -21,8 +9,18 @@
 		Enter 1st number : <input type="text" name="t1"> <br>
 		Enter 2st number : <input type="text" name="t2"> <br> <input type="submit">
 		<%
-			if (k != null) {
-				out.println("<br> The sum is: " + k + "<br>");
+			String first = request.getParameter("t1");
+			String second = request.getParameter("t2");
+	
+			if(first != null && second != null && !first.equals("") && ! second.equals("")){
+				if (	first.matches("^-?\\d+$") && second.matches("^-?\\d+$")) {		
+					out.println("<br>The sum is: " + (Integer.parseInt(first) + Integer.parseInt(second)) + "<br>");
+				} else {
+					out.println("<br>Error, wrong input format. Should be an integer.<br>");
+				}
+			}
+			else{
+				out.println("<br>Insert two valid input integers.<br>");
 			}
 		%>
 	</form>
@@ -32,7 +30,6 @@
 	<form action="add" method="get">
 	<input type="submit" value="Go to HTML + Servlet">
 	</form><br>
-	
 </body>
 </html>
 

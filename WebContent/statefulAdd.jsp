@@ -11,7 +11,7 @@
 	public void jspInit() {
 		try {
 			InitialContext ic = new InitialContext();
-			values = (ListElement) ic.lookup("java:global/class-example/ListElement");
+			values = (ListElement) ic.lookup("java:global/se2-class-example/ListElement");
 
 		} catch (Exception e) {
 			System.out.println(e);
