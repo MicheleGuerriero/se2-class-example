@@ -19,11 +19,11 @@
 	}
 	%>
 <%
-	if (request.getParameter("addNum") != null) {
+	if (request.getParameter("addNum") != null && request.getParameter("t1").matches("^-?\\d+$")) {
 		values.addElement(Integer.parseInt(request.getParameter("t1")));
 	}
 
-	if (request.getParameter("remNum") != null) {
+	if (request.getParameter("remNum") != null && request.getParameter("t1").matches("^-?\\d+$")) {
 		values.removeElement(Integer.parseInt(request.getParameter("t1")));
 	}
 %>
